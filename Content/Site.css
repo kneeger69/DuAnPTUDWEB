@@ -1,0 +1,133 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f8f8f8;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1000;
+    border-bottom: 1px solid #ddd;
+    transition: margin-left 0.3s; /* Đảm bảo header có animation khi sidebar mở */
+}
+
+.sidebar-and-logo {
+    display: flex;
+    align-items: center;
+}
+
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+}
+
+.collapse-icon {
+    display: none;
+}
+
+.logo {
+    padding-left: 100px; 
+}
+
+.navbar-menu {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding-right: 20px;
+    margin-left: auto;
+}
+
+    .navbar-menu li {
+        margin-left: 15px;
+    }
+
+.container {
+    display: flex;
+    margin-left: 60px;
+    transition: margin-left 0.3s; /* Thêm transition cho container */
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: width 0.3s;
+    padding-top: 60px;
+    z-index: 999;
+}
+
+    .sidebar.active {
+        width: 200px; /* Khi sidebar mở */
+    }
+
+    .sidebar .menu {
+        list-style-type: none;
+        padding: 0;
+    }
+
+        .sidebar .menu li {
+            padding: 10px;
+            text-align: center;
+        }
+
+            .sidebar .menu li a {
+                color: white;
+                text-decoration: none;
+                display: block;
+            }
+
+                .sidebar .menu li a:hover {
+                    background-color: #575757;
+                }
+
+.main-content {
+    padding: 20px;
+    width: calc(100% - 60px);
+    transition: width 0.3s;
+}
+
+.sidebar.active + .container {
+    margin-left: 200px; /* Đẩy container sang phải */
+}
+
+    .sidebar.active + .container .main-content {
+        width: calc(100% - 220px);
+    }
+
+footer {
+    background-color: #f8f8f8;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    transition: margin-left 0.3s; /* Thêm transition cho footer */
+}
+
+/* Khi sidebar mở, đẩy cả header, footer và container sang phải */
+.sidebar.active + .container {
+    margin-left: 200px; /* Đẩy container sang phải */
+}
+
+    .sidebar.active + .container + footer {
+        margin-left: 200px; /* Đẩy footer sang phải */
+    }
+
+header.active {
+    margin-left: 200px; /* Đẩy header sang phải */
+}

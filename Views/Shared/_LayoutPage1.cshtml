@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - WebApp</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <!-- Sidebar icon + logo cùng hàng -->
+        <div class="sidebar-and-logo">
+            <!-- Icon Menu khi sidebar collapse -->
+            <span id="menu-icon" class="menu-icon" onclick="toggleSidebar()">&#9776;</span>
+            <!-- Icon collapse khi sidebar đang mở -->
+            <span id="collapse-icon" class="menu-icon collapse-icon" onclick="toggleSidebar()">&#10005;</span>
+            <div class="logo">
+                <h1>Logo</h1>
+            </div>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="#">Sign in</a></li>
+            <li>
+                <select>
+                    <option value="en">English</option>
+                    <option value="vi">Tiếng Việt</option>
+                </select>
+            </li>
+        </ul>
+    </header>
+
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <!-- Icon collapse khi sidebar đang mở -->
+        <span id="collapse-icon" class="collapse-icon" onclick="toggleSidebar()">&#10005;</span>
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="main-content">
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+
+    <!-- JavaScript to toggle sidebar -->
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            var menuIcon = document.getElementById("menu-icon");
+            var collapseIcon = document.getElementById("collapse-icon");
+            var header = document.querySelector('header');
+            var container = document.querySelector('.container');
+
+            // Kiểm tra xem sidebar có class 'active' hay không
+            if (sidebar.classList.contains("active")) {
+                // Sidebar đang mở -> đóng lại
+                sidebar.classList.remove("active");
+                header.classList.remove("active"); // Thu header lại
+                container.classList.remove("active"); // Thu container lại
+                menuIcon.style.display = "inline-block"; // Hiển thị lại icon menu
+                collapseIcon.style.display = "none"; // Ẩn icon collapse
+            } else {
+                // Sidebar đang đóng -> mở ra
+                sidebar.classList.add("active");
+                header.classList.add("active"); // Đẩy header sang phải
+                container.classList.add("active"); // Đẩy container sang phải
+                menuIcon.style.display = "none"; // Ẩn icon menu khi sidebar mở
+                collapseIcon.style.display = "inline-block"; // Hiển thị icon collapse
+            }
+        }
+    </script>
+</body>
+</html>
